@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title> Welcome to TwitFace </title>
+    
+  </head>
+  <body>
+    <p> hello world </p>
+    <form action="display" method="GET">
+      enter screen name: <input name="screen_name">
+    </form>
+
+
+    {% if screen_name1 %}
+    {{ screen_name1}}
+    {{ screen_name2}}
+    {{ text }}
+    <img src="{{ profile_image_url1 }}" />
+    <img src="{{ profile_image_url2 }}" />
+    {% endif %}
+   </body>
+
+</html>

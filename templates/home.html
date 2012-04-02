@@ -1,0 +1,298 @@
+<html>
+  <head>
+    <title>TwittXOR: How well do you know your Twitter? </title>
+    <meta name="description" content="Two randomly choosen followers and one displayed tweet. Who will win!?! TwittXOR! Brought to you by
+            70percentfatfree.com and Twitter.com, and Cameron Davidson-Pilon, 2012. " />
+    <link rel="icon" 
+      rel="SHORTCUT ICON"
+      href="{{STATIC_URL}}favicon.ico"/>
+    <style>
+       		html{
+                font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+				font-size: 10pt;
+				background-color: rgb(220,255,255);
+				}
+			div#wrapper{
+				position: relative;
+				width:1000px;
+				height:600px;
+                margin: 0px auto;
+				}
+            div#header{
+                height: 45px;
+                border-bottom: 6px solid 0099CC;
+                -moz-box-sizing: border-box;
+                background-color: 006400;
+                position: absolute;
+                top: 0px;
+                width: 100%;
+                left: 0px;
+                }
+            form#submitScreenName{
+                margin-left: auto;
+                margin-right: auto;
+                margin-top:110px;
+                margin-bottom: 30px;
+                text-align:center;
+                }
+             #header .link {
+                color: rgb(176,190,210);
+                text-decoration: none;
+                }
+
+             div#text{
+                padding: 10px 10px;
+                background-color: rgb(220,245,245);
+                border: 1px solid rgba(0,128,0,0.4);
+                
+                -moz-box-sizing: border-box;
+                margin: 20px auto;
+                text-align:center;
+                width: 560px;
+                font-size: 14pt;
+                }
+             .user#right{
+                float:right;
+                margin-left: 3px;
+                margin-right: 335px;
+                }
+             .user#left{
+                float:left;
+                margin-right: 3px;
+                margin-left: 335px;
+                }
+              .user{
+                border: 1 solid rgb(220,255,255);
+                -moz-box-sizing: border-box;
+                padding: 10px 10px;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                text-align: center;
+                }
+               input{
+                    text-align: center;
+                    }
+               input#name{
+                    font-size: 32px;
+                    color: rgb(150,150,150);
+                    height: 50px;
+                    }
+
+               input#name:focus{
+                    color: rgb(0,0,0);
+                    }
+
+                div#answer{
+                    padding: 2px 0px;
+                    clear: right;
+                    margin:0px auto;
+                    text-align: center;
+                    background-color: rgb(220,245,245);
+                    border: 1px solid rgba(0,128,0,0.4);
+                    -moz-box-sizing: border-box;
+
+                    width: 290px;
+                    position: relative;
+                }
+                span#answerText{
+                    font-size: 21pt;
+                    color: 006400
+                    }
+                
+              .user:hover{
+                    background-color: rgb(220,245,245);
+                    border: 1px solid rgba(0,128,0,0.4);
+                    -moz-border-radius: 10px;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    }
+               div#another{
+                    clear: right;
+                    text-align: center;
+
+                    }
+                input#another{
+                    border: 1px solid rgba(0,128,0);
+                    -moz-box-sizing: border-box;
+
+                    }
+                .invisible{
+                    display: none;
+                    }
+                
+                .screen_name{
+                    margin-top: 5px;
+                    font-size: 12pt;
+                    }
+                div#instructions{
+                    text-align: center;
+                    font-size: 11pt;
+                    margin: 5px 5px;
+                    }
+                img#logo{
+                    height: 42px;
+                    margin: 5px auto;
+                    display: block;
+                    }
+                #text a{
+                    color:#0084B4;
+                    }
+                img.displaypic{
+                    border: 1px solid rgb(220,255,255);
+                    -moz-border-radius: 10px;
+                    border-radius: 10px;
+                    }
+                
+                #tt {position:absolute; display:block; background:url({{ STATIC_URL }}images/tt_left.gif) top left no-repeat}
+                #tttop {display:block; height:5px; margin-left:5px; background:url({{ STATIC_URL }}images/tt_top.gif) top right no-repeat; overflow:hidden}
+                #ttcont {display:block; padding:2px 12px 3px 7px; margin-left:5px; background:#666; color:#FFF}
+                #ttbot {display:block; height:5px; margin-left:5px; background:url({{ STATIC_URL }}images/tt_bottom.gif) top right no-repeat; overflow:hidden}
+                                      
+    </style>        
+    <SCRIPT type="text/javascript" language="Javascript" SRC="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></SCRIPT>
+    <SCRIPT type="text/javascript" language="Javascript" SRC="{{ STATIC_URL }}script.js"></SCRIPT>
+    <script type="text/javascript">
+        
+         function validate(){
+            if ( document.getElementById("name").value != "") {
+                return true;
+            }
+            return false;
+            };
+        
+        
+        
+        var Correct = ['Correct!', 'Bingo!', 'Nice! Keep it up!', 'Great catch!', 'You got it, kid!', "Yup, next one please!"];
+        var Wrong = ['Wrong. Just <b>wrong</b>.', 'Nope!', 'Incorrect!', "You're not very good at this...", "ehh.. no."];
+        
+
+        {% if sol %}
+            var s = {{ sol }};
+        {% else %}
+            var s = "";
+        {% endif %}
+        function check_answer(sol){
+            if (sol == s){
+            	document.getElementById('answerText').innerHTML = Correct[Math.floor(Math.random()*Correct.length)];
+                
+                $("#answer").toggleClass("invisible");
+                document.getElementById('inputright').value="1";
+                document.getElementById('num').innerHTML = parseInt({{session.score}})+1;
+                }
+            else{
+                document.getElementById('answerText').innerHTML = Wrong[Math.floor(Math.random()*Wrong.length)];
+                $("#answer").toggleClass("invisible");
+                }
+                document.getElementById('denom').innerHTML = parseInt({{session.attempts}})+1;
+                document.getElementById("right").removeAttribute("onclick");
+                document.getElementById("left").removeAttribute("onclick");
+            };
+           
+     </script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29118575-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </head>
+  <body>
+        <div id="header">
+            <a class="link" href="/">
+              <img id="logo" src="{{STATIC_URL}}twittxor.png" />
+            </a>
+            <p style="position: absolute; right: 5px; z-index: 3; top: 15"> <a class="link" href="http://www.70percentfatfree.com"> 70percentfatfree.com </a> </p>
+        </div>
+        
+        <div id="wrapper">
+            
+        
+           <form id="submitScreenName" action="display" method="GET" onsubmit="return validate();">
+            <span style="font-size: 12pt"> enter a Twitter user name: </span>
+            <br/>
+            <input id="name"
+                {% if username %}
+                    value="@{{ username }}"
+                {% else %}
+                    value = "Twitter user name"
+                {% endif %}
+                onclick="this.value='';"
+                name="screen_name"
+                size = 20 />
+
+           </form>
+              
+              <div style="text-align: center; position: relative; top: -30px; right: -135px;">
+              <a style = "position:absolute;  text-decoration: none; color:006400; font-size:9pt;"  href="/display"
+                    onmouseover="tooltip.show('Good caaaall.');" 
+                    onmouseout="tooltip.hide();" 
+               > Random? </a>
+              </div>
+
+        {% if error %}
+            <div id="text"> 
+                <span style="color: rgb(255,30,30);"> {{error}} </span>
+            </div>
+        {% endif %}
+        {% if text %}
+
+            <div id="text"
+            
+            onmouseover="tooltip.show('Who said this tweet? {{ screen_name1 }} or {{ screen_name2 }}');" 
+            onmouseout="tooltip.hide();" 
+            >
+            <span style="position: relative; font-size:13pt; color:006400"> Who tweeted it? </span>
+            {% autoescape off %}
+                <p style="margin: 10px 0px; line-height: 1.3;">"{{text}}"</p>
+            {% endautoescape %}
+
+            </div>
+
+            <div class="user" id="left"
+                onclick="check_answer(1)"
+                onmouseover="tooltip.show('<b>self-description:</b> {{description1}}');" 
+                onmouseout="tooltip.hide();">
+                <img class="displaypic" src="{{profile_image_url1}}" height=60/><br/>
+                <span class="screen_name">@{{ screen_name1 }} </span>
+            </div>  
+            
+            <div class="user"
+                onclick="check_answer(2);"
+                id="right"
+                onmouseover="tooltip.show('<b>self-description:</b> {{description2}}');" 
+                onmouseout="tooltip.hide();">
+                <img class="displaypic" src="{{profile_image_url2}}" height=60/><br/>
+                <span class="screen_name">@{{ screen_name2 }} </span>
+            </div>
+
+            <div id="answer" class="invisible">
+               <span id="answerText">
+                    
+               </span>
+                <div id="another">
+                    <form style="margin-top: 5px;" method="get" action="display">
+                        <input type="hidden" name="screen_name" value="{{username}}">
+                        <input id="inputright" type="hidden" name="right" value="0">
+                        <input id = "another" value="Another?" type="submit">
+                    </form>
+                </div>
+                
+                <span>
+                    Score: <span id="num">{{session.score}}</span>/<span id="denom"></span>
+                </span>
+                <br/>
+                <span style="color:rgb(220,245,245);">twt it:</span>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://TwittXOR.70percentfatfree.com">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>     
+             </div>
+        {% endif %}
+        </div>
+  </body>
+</html>

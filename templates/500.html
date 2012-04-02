@@ -1,0 +1,167 @@
+<html>
+  <head>
+    <title>TwittXOR: How well do you know your Twitter? </title>
+    <meta name="description" content="Two randomly choosen followers and one displayed tweet. Who will win!?! TwittXOR! Brought to you by
+            70percentfatfree.com and Twitter.com, and Cameron Davidson-Pilon, 2012. " />
+    <link rel="icon" 
+      rel="SHORTCUT ICON"
+      href="{{STATIC_URL}}favicon.ico"/>
+    <style>
+       		html{
+                font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+				font-size: 10pt;
+				background-color: rgb(220,255,255);
+				}
+			div#wrapper{
+				position: relative;
+				width:1000px;
+				height:600px;
+                margin: 0px auto;
+				}
+            div#header{
+                height: 45px;
+                border-bottom: 6px solid 0099CC;
+                -moz-box-sizing: border-box;
+                background-color: 006400;
+                position: absolute;
+                top: 0px;
+                width: 100%;
+                left: 0px;
+                }
+            form#submitScreenName{
+                margin-left: auto;
+                margin-right: auto;
+                margin-top:100px;
+                margin-bottom: 30px;
+                text-align:center;
+                }
+             #header .link {
+                color: rgb(176,190,210);
+                text-decoration: none;
+                }
+
+             div#text{
+                padding: 20px 10px;
+                background-color: rgb(220,245,245);
+                border: 1px solid rgba(0,128,0,0.4);
+                margin: 200px auto;
+                text-align:center;
+                width: 520px;
+                font-size: 12pt;
+                }
+             .user#right{
+                float:right;
+                margin-left: 3px;
+                margin-right: 340px;
+                }
+             .user#left{
+                float:left;
+                margin-right: 3px;
+                margin-left: 340px;
+                }
+              .user{
+                border: 1 solid rgb(220,255,255);
+                padding: 10px 10px;
+                margin-top: 10px;
+                margin-bottom: 30px;
+                text-align: center;
+                }
+               input{
+                    text-align: center;
+                    }
+               input#name{
+                    font-size: 32px;
+                    color: rgb(150,150,150);
+                    height: 50px;
+                    }
+
+               input#name:focus{
+                    color: rgb(0,0,0);
+                    }
+
+                div#answer{
+                    padding: 2px 0px;
+                    clear: right;
+                    margin:0px auto;
+                    text-align: center;
+                    background-color: rgb(220,245,245);
+                    border: 1px solid rgba(0,128,0,0.4);
+                    width: 290px;
+                    position: relative;
+                }
+                span#answerText{
+                    font-size: 21pt;
+                    color: 006400
+                    }
+                
+              .user:hover{
+                    background-color: rgb(220,245,245);
+                    border: 1px solid rgba(0,128,0,0.4);
+                    -moz-border-radius: 10px;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    }
+               div#another{
+                    clear: right;
+                    text-align: center;
+
+                    }
+                input#another{
+                    border: 1px solid rgba(0,128,0);
+                    }
+                .invisible{
+                    display: none;
+                    }
+                
+                .screen_name{
+                    margin-top: 5px;
+                    font-size: 12pt;
+                    }
+                div#instructions{
+                    text-align: center;
+                    font-size: 11pt;
+                    margin: 5px 5px;
+                    }
+                img#logo{
+                    height: 42px;
+                    margin-left: 5px;
+                    margin-top: 5px;
+                    }
+                    
+       </style>  
+                        
+      <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-29118575-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+     </head>
+    <body>
+        <div id="header">
+            <a class="link" href="/">
+              <img id="logo" src="{{STATIC_URL}}twittxor.png" />
+            </a>
+            <p style="position: absolute; right: 5px; z-index: 3; top: 15"> <a class="link" href="http://www.70percentfatfree.com"> 70percentfatfree.com </a> </p>
+        </div>
+        
+        <div id="wrapper">
+            <div id="text">
+                <H2> Server Error! </h2>
+                </p>Yikes. The server faulted. Try going back and starting over. Any complaints send to me @cmrn_dp </p>
+            </div>
+        
+        
+        </div>
+        
+    </body>
+</html>
+         
